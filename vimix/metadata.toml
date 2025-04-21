@@ -1,0 +1,252 @@
+[theme]
+name = "vimix-cursors"
+description = "Vimix Cursors - White"
+version = 0.1
+author = "vinceliuice"
+
+[config]
+cleanup = ["hycur", "xcur"]
+mirror = 0
+shape_size = 32
+x_hotspot = 16
+xcur_sizes = [32, 40, 48, 64]
+y_hotspot = 16
+
+[cursors]
+[cursors.alias]
+flips = 1
+symlinks = ["dnd-link"]
+x_hotspot = 5
+y_hotspot = 5
+
+[cursors.all-scroll]
+symlinks = [
+  "move",
+  "size_all",
+]
+
+[cursors.bottom_left_corner]
+symlinks = ["sw-resize"]
+x_hotspot = 4
+y_hotspot = 28
+
+[cursors.bottom_right_corner]
+symlinks = ["se-resize"]
+x_hotspot = 28
+y_hotspot = 28
+
+[cursors.bottom_side]
+symlinks = ["s-resize"]
+x_hotspot = 16
+y_hotspot = 28
+
+[cursors.cell]
+symlinks = ["plus"]
+
+[cursors.center_ptr]
+x_hotspot = 16
+y_hotspot = 5
+
+[cursors.col-resize]
+
+[cursors.color-picker]
+flips = 1
+symlinks = ["tcross"]
+x_hotspot = 2
+y_hotspot = 30
+
+[cursors.context-menu]
+flips = 1
+x_hotspot = 5
+y_hotspot = 5
+
+[cursors.copy]
+flips = 1
+x_hotspot = 5
+y_hotspot = 5
+
+[cursors.crosshair]
+
+[cursors.default]
+flips = 1
+symlinks = ["arrow", "left_ptr", "top_left_arrow"]
+x_hotspot = 5
+y_hotspot = 5
+
+[cursors.dnd-move]
+flips = 1
+symlinks = [
+  "closedhand",
+  "grabbing",
+  "dnd-none",
+]
+x_hotspot = 15
+y_hotspot = 15
+
+[cursors.dnd-no-drop]
+flips = 1
+symlinks = ["dnd_no_drop"]
+x_hotspot = 15
+y_hotspot = 15
+
+[cursors.down-arrow]
+symlinks = ["sb_down_arrow"]
+x_hotspot = 16
+y_hotspot = 24
+
+[cursors.draft]
+flips = 1
+x_hotspot = 3
+y_hotspot = 29
+
+[cursors.fleur]
+
+[cursors.help]
+flips = 1
+symlinks = [
+  "question_arrow",
+  "left_ptr_help",
+  "whats_this",
+]
+x_hotspot = 5
+y_hotspot = 5
+
+[cursors.left-arrow]
+symlinks = ["sb_left_arrow"]
+x_hotspot = 8
+y_hotspot = 16
+
+[cursors.left_side]
+symlinks = ["w-resize"]
+x_hotspot = 4
+y_hotspot = 16
+
+[cursors.no-drop]
+flips = 1
+x_hotspot = 5
+y_hotspot = 5
+
+[cursors.not-allowed]
+flips = 1
+symlinks = ["crossed_circle"]
+
+[cursors.openhand]
+flips = 1
+symlinks = ["grab", "hand1"]
+x_hotspot = 16
+y_hotspot = 14
+
+[cursors.pencil]
+flips = 1
+x_hotspot = 3
+y_hotspot = 29
+
+[cursors.pirate]
+
+[cursors.pointer]
+flips = 1
+symlinks = [
+  "hand2",
+  "pointing_hand",
+]
+x_hotspot = 16
+y_hotspot = 5
+
+[cursors.progress]
+anim_delay = 25
+animated = 1
+flips = 1
+symlinks = [
+  "left_ptr_watch",
+]
+x_hotspot = 5
+y_hotspot = 5
+
+[cursors.right-arrow]
+symlinks = ["sb_right_arrow"]
+x_hotspot = 24
+y_hotspot = 16
+
+[cursors.right_ptr]
+flips = 1
+symlinks = ["draft_large", "draft_small"]
+x_hotspot = 28
+y_hotspot = 7
+
+[cursors.right_side]
+symlinks = ["e-resize"]
+x_hotspot = 28
+y_hotspot = 16
+
+[cursors.row-resize]
+
+[cursors.size_bdiag]
+symlinks = ["nesw-resize", "fd_double_arrow"]
+
+[cursors.size_fdiag]
+symlinks = ["nwse-resize", "bd_double_arrow"]
+
+[cursors.size_hor]
+symlinks = [
+  "sb_h_double_arrow",
+  "ew-resize",
+  "h_double_arrow",
+  "size-hor",
+  "split_h",
+]
+
+[cursors.size_ver]
+symlinks = [
+  "double_arrow",
+  "ns-resize",
+  "sb_v_double_arrow",
+  "size-ver",
+  "split_v",
+  "v_double_arrow",
+]
+
+[cursors.text]
+symlinks = ["ibeam", "xterm"]
+
+[cursors.top_left_corner]
+symlinks = ["nw-resize"]
+x_hotspot = 5
+y_hotspot = 5
+
+[cursors.top_right_corner]
+symlinks = ["ne-resize"]
+x_hotspot = 27
+y_hotspot = 5
+
+[cursors.top_side]
+symlinks = ["n-resize"]
+x_hotspot = 16
+y_hotspot = 4
+
+[cursors.up-arrow]
+symlinks = ["sb_up_arrow"]
+x_hotspot = 16
+y_hotspot = 8
+
+[cursors.vertical-text]
+
+[cursors.wait]
+anim_delay = 25
+animated = 1
+flips = 1
+symlinks = ["watch"]
+
+[cursors.wayland-cursor]
+
+[cursors.x-cursor]
+symlinks = ["X_cursor"]
+
+[cursors.zoom-in]
+flips = 1
+x_hotspot = 15
+y_hotspot = 15
+
+[cursors.zoom-out]
+flips = 1
+x_hotspot = 15
+y_hotspot = 15
