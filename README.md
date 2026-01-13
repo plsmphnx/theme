@@ -4,5 +4,4 @@ bandwidth. All credit goes to the original authors.
 -   **Cursors**: [Vimix cursors](https://github.com/vinceliuice/Vimix-cursors)
     (via [accurse](https://github.com/ATM-Jahid/accurse))
 -   **GTK**: [Fluent GTK theme](https://github.com/vinceliuice/Fluent-gtk-theme)
--   **Icons**:
-    [Vimix icon theme](https://github.com/vinceliuice/vimix-icon-theme)
+-   **Icons**: [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)

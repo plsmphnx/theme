@@ -36,7 +36,7 @@
           sed -i "/\$background:/s/#333333/#000000/gi" ./src/_sass/_colors.scss
           sed -i "/\$surface:/s/#3C3C3C/#000000/gi" ./src/_sass/_colors.scss
           sed -i "/\$blur_opacity:/s/0\.5/0.4/g" ./src/_sass/_colors.scss
-          sed -i "/\$window-radius:/s/.px/0px/g" ./src/_sass/_variables.scss    
+          sed -i "/\$window-radius:/s/.px/0px/g" ./src/_sass/_variables.scss
         '';
       })).override {
         colorVariants = [ "dark" ];
@@ -45,7 +45,8 @@
         tweaks = [ "blur" "noborder" "round" ];
       };
 
-      icon = vimix-icon-theme;
+      icon = (papirus-icon-theme.overrideAttrs { dontFixup = true; })
+        .override { color = "grey"; };
     });
   };
 }
