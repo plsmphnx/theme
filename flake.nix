@@ -45,9 +45,7 @@
         tweaks = [ "blur" "noborder" "round" ];
       };
 
-      icon = fluent-icon-theme.override {
-        colorVariants = [ "grey" ];
-      };
+      icon = vimix-icon-theme;
     });
   };
 }
