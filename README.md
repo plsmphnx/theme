@@ -1,7 +1,11 @@
 Personal theme config. Some assets copied to reduce download and/or build
 bandwidth. All credit goes to the original authors.
 
--   **Cursors**: [Vimix cursors](https://github.com/vinceliuice/Vimix-cursors)
-    (via [accurse](https://github.com/ATM-Jahid/accurse))
--   **GTK**: [Fluent GTK theme](https://github.com/vinceliuice/Fluent-gtk-theme)
--   **Icons**: [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
+-   **Cursors**: [Vimix cursors][1] (via [accurse][2])
+-   **GTK**: [Orianin GTK theme][3]
+-   **Icons**: [Papirus icon theme][4]
+
+[1]: https://github.com/vinceliuice/Vimix-cursors
+[2]: https://github.com/ATM-Jahid/accurse
+[3]: https://github.com/vinceliuice/Orianin-gtk-theme
+[4]: https://github.com/PapirusDevelopmentTeam/papirus-icon-theme

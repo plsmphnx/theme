@@ -19,7 +19,7 @@
         };
       in stdenvNoCC.mkDerivation {
         name = "vimix-cursors";
-        src = ./.;
+        src = ./cursor;
         nativeBuildInputs = [ accurse librsvg xorg.xcursorgen ];
         buildPhase = ''
           accurse vimix/metadata.toml || true
@@ -30,19 +30,37 @@
         '';
       };
 
-      gtk = (fluent-gtk-theme.overrideAttrs (_: {
-        preInstall = ''
-          sed -i "/primary/s/white/rgba(white, 0.9)/g" ./src/_sass/_colors.scss
-          sed -i "/\$background:/s/#333333/#000000/gi" ./src/_sass/_colors.scss
-          sed -i "/\$surface:/s/#3C3C3C/#000000/gi" ./src/_sass/_colors.scss
-          sed -i "/\$blur_opacity:/s/0\.5/0.4/g" ./src/_sass/_colors.scss
-          sed -i "/\$window-radius:/s/.px/0px/g" ./src/_sass/_variables.scss
+      gtk = let
+        repo = "orianin-gtk-theme";
+        rev = "5cfdf21c72200bf4c2f0adb2ac0f002d23590313";
+        hash = "sha256-KBJM5aOUre7ZvaVePSUzXuD74GMGsgcYeo4iGyhlLm0=";
+      in stdenvNoCC.mkDerivation {
+        pname = repo;
+        version = builtins.substring 0 8 rev;
+
+        src = fetchFromGitHub {
+          owner = "vinceliuice";
+          inherit repo rev hash;
+        };
+
+        nativeBuildInputs = [ jdupes sassc ];
+
+        patches = [ ./gtk/alpha.patch ];
+
+        postPatch = ''
+          patchShebangs install.sh
         '';
-      })).override {
-        colorVariants = [ "dark" ];
-        sizeVariants = [ "compact" ];
-        themeVariants = [ "grey" ];
-        tweaks = [ "blur" "noborder" "round" ];
+
+        installPhase = ''
+          runHook preInstall
+
+          ./install.sh --theme grey --color dark --size compact --icon nixos \
+            --round 8px --tweaks black primary --dest $out/share/themes
+
+          jdupes --quiet --link-soft --recurse $out/share
+
+          runHook postInstall
+        '';
       };
 
       icon = (papirus-icon-theme.overrideAttrs { dontFixup = true; })
