@@ -45,7 +45,7 @@
 
         nativeBuildInputs = [ jdupes sassc ];
 
-        patches = [ ./gtk/alpha.patch ];
+        edit = ./gtk/edit.sed;
 
         postPatch = ''
           patchShebangs install.sh
@@ -53,6 +53,8 @@
 
         installPhase = ''
           runHook preInstall
+
+          find -name '*.scss' -exec sed -i -f $edit {} +
 
           ./install.sh --theme grey --color dark --size compact --icon nixos \
             --round 8px --tweaks black primary --dest $out/share/themes
