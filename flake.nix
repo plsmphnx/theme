@@ -1,33 +1,37 @@
 {
-  outputs = { self, nixpkgs }: let
-    systems = fn: nixpkgs.lib.mapAttrs (_: fn) nixpkgs.legacyPackages;
-  in {
-    packages = systems (pkgs: with pkgs; {
+  outputs = { self, nixpkgs }: {
+    packages = nixpkgs.lib.mapAttrs (_: pkgs: with pkgs; {
+
       cursor = let
-        accurse = with python3Packages; buildPythonApplication rec {
+        accurse = with python3Packages; buildPythonApplication (finalAttrs: {
           pname = "accurse";
           version = "0.1.0";
           pyproject = true;
 
           src = fetchPypi {
-            inherit pname version;
+            inherit (finalAttrs) pname version;
             sha256 = "sha256-ozkNbTrfdCfSk4EY1b4gJSKHlhcSlv2Kb1zTkDq6M0s=";
           };
 
           build-system = [ hatchling ];
           dependencies = [ lxml ];
-        };
+        });
       in stdenvNoCC.mkDerivation {
         name = "vimix-cursors";
         src = ./cursor;
+
         nativeBuildInputs = [ accurse librsvg xorg.xcursorgen ];
+
         buildPhase = ''
           accurse vimix/metadata.toml || true
         '';
+
         installPhase = ''
           mkdir -p "$out/share/icons"
           mv AC-vimix "$out/share/icons/vimix-cursors"
         '';
+
+        dontFixup = true;
       };
 
       gtk = let
@@ -45,8 +49,6 @@
 
         nativeBuildInputs = [ jdupes sassc ];
 
-        edit = ./gtk/edit.sed;
-
         postPatch = ''
           patchShebangs install.sh
         '';
@@ -54,7 +56,7 @@
         installPhase = ''
           runHook preInstall
 
-          find -name '*.scss' -exec sed -i -f $edit {} +
+          find -name '*.scss' -exec sed -i -f ${./gtk/edit.sed} {} +
 
           ./install.sh --theme grey --color dark --size compact --icon nixos \
             --round 8px --tweaks black primary --dest $out/share/themes
@@ -63,10 +65,13 @@
 
           runHook postInstall
         '';
+
+        dontFixup = true;
       };
 
       icon = (papirus-icon-theme.overrideAttrs { dontFixup = true; })
         .override { color = "grey"; };
-    });
+
+    }) nixpkgs.legacyPackages;
   };
 }
