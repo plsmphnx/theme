@@ -20,7 +20,7 @@
         name = "vimix-cursors";
         src = ./cursor;
 
-        nativeBuildInputs = [ accurse librsvg xorg.xcursorgen ];
+        nativeBuildInputs = [ accurse librsvg xcursorgen ];
 
         buildPhase = ''
           accurse vimix/metadata.toml || true
