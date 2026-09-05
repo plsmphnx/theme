@@ -1,5 +1,4 @@
-Personal theme config. Some assets copied to reduce download and/or build
-bandwidth. All credit goes to the original authors.
+Personal theme config. All credit goes to the original authors.
 
 -   **Cursors**: [Vimix cursors][1] (via [accurse][2])
 -   **GTK**: [Orianin GTK theme][3]
