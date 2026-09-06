@@ -1,8 +1,8 @@
 Personal theme config. All credit goes to the original authors.
 
--   **Cursors**: [Vimix cursors][1] (via [accurse][2])
--   **GTK**: [Orianin GTK theme][3]
--   **Icons**: [Papirus icon theme][4]
+-   **Cursors**: [Vimix][1] (via [accurse][2])
+-   **GTK**: [Orianin][3]
+-   **Icons**: [Papirus][4]
 
 [1]: https://github.com/vinceliuice/Vimix-cursors
 [2]: https://github.com/ATM-Jahid/accurse

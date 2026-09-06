@@ -22,7 +22,7 @@
         });
       in stdenvNoCC.mkDerivation {
         pname = repo;
-        version = builtins.substring 0 8 rev;
+        version = builtins.substring 0 7 rev;
 
         src = fetchFromGitHub {
           owner = "vinceliuice";
@@ -31,6 +31,13 @@
         };
 
         nativeBuildInputs = [ accurse librsvg xcursorgen ];
+
+        postPatch = ''
+          for file in *.svg; do
+            patch=${./cursor/patch}/''${file%.*}.sed
+            if [ -f $patch ]; then sed -i -f $patch $file; fi
+          done
+        '';
 
         buildPhase = ''
           mkdir vimix
@@ -41,7 +48,7 @@
 
         installPhase = ''
           mkdir -p "$out/share/icons"
-          mv AC-vimix "$out/share/icons/vimix-cursors"
+          mv AC-vimix "$out/share/icons/${repo}"
         '';
 
         dontFixup = true;
@@ -53,7 +60,7 @@
         hash = "sha256-KBJM5aOUre7ZvaVePSUzXuD74GMGsgcYeo4iGyhlLm0=";
       in stdenvNoCC.mkDerivation {
         pname = repo;
-        version = builtins.substring 0 8 rev;
+        version = builtins.substring 0 7 rev;
 
         src = fetchFromGitHub {
           owner = "vinceliuice";
@@ -64,19 +71,15 @@
 
         postPatch = ''
           patchShebangs install.sh
+
+          find -name '*.scss' -exec sed -i -f ${./gtk/patch.sed} {} +
         '';
 
         installPhase = ''
-          runHook preInstall
-
-          find -name '*.scss' -exec sed -i -f ${./gtk/edit.sed} {} +
-
           ./install.sh --theme grey --color dark --size compact --icon nixos \
             --round 8px --tweaks black primary --dest $out/share/themes
 
           jdupes --quiet --link-soft --recurse $out/share
-
-          runHook postInstall
         '';
 
         dontFixup = true;

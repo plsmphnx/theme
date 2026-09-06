@@ -7,6 +7,8 @@ author = "vinceliuice"
 [config]
 cleanup = ["hycur", "xcur"]
 mirror = 0
+new_substr = ["#333333"]
+old_substr = ["#323232"]
 shape_size = 32
 x_hotspot = 16
 xcur_sizes = [32, 40, 48, 64]
