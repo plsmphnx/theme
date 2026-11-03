@@ -88,6 +88,30 @@
       icon = (papirus-icon-theme.overrideAttrs { dontFixup = true; })
         .override { color = "grey"; };
 
+      font = let
+        freezer = pkgs.lib.getExe python314Packages.opentype-feature-freezer;
+        patcher = pkgs.lib.getExe nerd-font-patcher;
+      in stdenvNoCC.mkDerivation {
+        pname = "iosevka-custom";
+        version = iosevka.version;
+        
+        src = iosevka;
+        
+        buildPhase = ''
+          for font in share/fonts/truetype/Iosevka-Extended*.ttf; do
+            name=$(basename $font)
+            name=Iosevka-Custom''${name#Iosevka-Extended}
+            ${freezer} -R "Extended/Custom" -f zero $font $name
+            ${patcher} -qs $name
+          done
+        '';
+
+        installPhase = ''
+          mkdir -p $out/share/fonts/truetype
+          mv *.ttf $out/share/fonts/truetype
+        '';
+      };
+
     }) nixpkgs.legacyPackages;
   };
 }
