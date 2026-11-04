@@ -89,26 +89,23 @@
         .override { color = "grey"; };
 
       font = let
-        freezer = pkgs.lib.getExe python314Packages.opentype-feature-freezer;
-        patcher = pkgs.lib.getExe nerd-font-patcher;
+        tt = "share/fonts/truetype";
+        sym = "${nerd-fonts.symbols-only}/${tt}/NerdFonts/Symbols";
       in stdenvNoCC.mkDerivation {
-        pname = "iosevka-custom";
-        version = iosevka.version;
-        
-        src = iosevka;
-        
+        pname = "custom-fonts";
+        version = "${iosevka.version}+${nerd-fonts.symbols-only.version}";
+
+        dontUnpack = true;
+
         buildPhase = ''
-          for font in share/fonts/truetype/Iosevka-Extended*.ttf; do
-            name=$(basename $font)
-            name=Iosevka-Custom''${name#Iosevka-Extended}
-            ${freezer} -R "Extended/Custom" -f zero $font $name
-            ${patcher} -qs $name
-          done
+          ${fontforge}/bin/fontforge -script ${./font/raise.py} 200 \
+            ${sym}/SymbolsNerdFontMono-Regular.ttf \
+            SymbolsNerdFontRaised-Regular.ttf
         '';
 
         installPhase = ''
-          mkdir -p $out/share/fonts/truetype
-          mv *.ttf $out/share/fonts/truetype
+          mkdir -p $out/${tt}/custom
+          mv *.ttf $out/${tt}/custom
         '';
       };
 
